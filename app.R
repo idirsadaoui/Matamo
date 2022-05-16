@@ -20,7 +20,7 @@ library(shinythemes)
 # mots <- cosine(mots[,1:dim(mots)[2]])
 # mots <- as.data.frame(mots)
 
-## On peut aussi implémenter nous même la fonction cosine, il suffit de recopier la formule mathématique issu de Wikipédia:
+## On peut aussi implémenter nous même la fonction cosine, il suffit de recopier la formule mathématique issue de Wikipédia:
 
 ## cosine <- function(x) {
 ##   y <- t(x) %*% x
