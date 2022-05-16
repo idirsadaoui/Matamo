@@ -2,9 +2,15 @@
 Devinez le mot secret en jouant à Motamo
 
 Ce jeu à été implémenté sur Rstudio dans le cadre d'un projet de master d'analyse de données textuelles.
-Toutes les intructions et informations sont présentent sur la page du jeu donc n'attendez pas et allez deviner le mot secret ! 
+Le données utilisées proviennent du site de Jean-Philippe Fauconnier et son présentent à l'adresse suivante : 
+
+https://fauconnier.github.io
 
 
-Pour jouer aller sur le site suivant : 
+Le jeu de données sélectionné est frWac_non_lem_no_postag_no_phrase_200_cbow_cut100.bin
+La distance entre les mots a été calculé avec la Cosine similarity.
 
- https://idirsadaoui.shinyapps.io/Motamo/
+
+Pour jouer à Motamo cliquez sur le lien suivant, Enjoy !
+
+https://idirsadaoui.shinyapps.io/Motamo/
