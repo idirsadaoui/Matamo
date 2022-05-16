@@ -8,11 +8,27 @@ library(shinythemes)
 # mota <- read.table('mota.txt')
 # rownames(mota) <- mota[,1]
 # mota <- mota[,-1]
+# dim(mota)
+
+## Pour le bon fonctionnement de la fonction, les données des dimensions de chaque mots doivent être en ligne.
+## On utilise donc la transporsée de mota.
 # mota <- t(mota)
-# dim(mota)[2]
-# mota <- cosine(mota[,1:dim(mota)[2]]) 
+
+## on applique la fonction cosine pour calculer la "distance" entre les mots.
+# mota <- cosine(mota[,1:dim(mota)[2]])
 # mota <- as.data.frame(mota)
 
+## On peut aussi implémenter nous même la fonction cosine, il suffit de recopier la formule mathématique issu de Wikipédia:
+
+## cosine <- function(x) {
+##   y <- t(x) %*% x
+##   res <- (y / (sqrt(diag(y)) %*% t(sqrt(diag(y)))))
+##   return(res)
+## }
+
+
+## On récupère la matrice cosine (implémentation longue) et on la transforme en format .fst pour charger beaucoup
+## plus rapidement les données dans le cadre de l'application Shiny.
 #write.fst(mota,"mota.fst")
 options(max.print = 10000)
 options(width = 500)
@@ -22,10 +38,15 @@ rownames(mota) <- colnames(mota)
 
 `%notin%` <- Negate(`%in%`)
 y <- as.vector(colnames(mota))
+
+# tirage au sort du mot
 tirage <- y[sample(1:dim(mota)[2],size=1)]
+
 
 res <- mota[which(colnames(mota)==tirage)]
 res %>% arrange(desc(res[,1])) -> res
+
+# tableau final
 final <- data.frame("Mot" = rownames(res)[1:1000],
                     "Distance" = res[1:1000,],
                     "Score" = seq(1000,1,-1))
