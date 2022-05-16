@@ -7,7 +7,6 @@ library(shinythemes)
 
 
 ## On à selectionné en amont 10.000 mots parmis les milliers présents dans le jeu de données originel.
-## Le selection s'est faite au cas par cas un mot à la fois.
 # mots <- read.table('mots.txt')
 # rownames(mots) <- mots[,1]
 # mots <- mots[,-1]
