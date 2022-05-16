@@ -34,21 +34,21 @@ library(shinythemes)
 #write.fst(mots,"mots.fst")
 options(max.print = 10000)
 options(width = 500)
-mots <- read_fst("mots.fst")
-rownames(mots) <- colnames(mots)
+mota <- read_fst("mots.fst")
+rownames(mota) <- colnames(mota)
 
 
 `%notin%` <- Negate(`%in%`)
+
 y <- as.vector(colnames(mots))
 
-# tirage au sort du mot
+## tirage
 tirage <- y[sample(1:dim(mots)[2],size=1)]
-
 
 res <- mots[which(colnames(mots)==tirage)]
 res %>% arrange(desc(res[,1])) -> res
 
-# tableau final
+## tableau final
 final <- data.frame("Mot" = rownames(res)[1:1000],
                     "Distance" = res[1:1000,],
                     "Score" = seq(1000,1,-1))
@@ -83,7 +83,7 @@ Play <- function(x){
         tt <- c(x, final[final==x,3], "Ça Brûle !"," ■■■■■■■■■■■■■■■■■■  ")
         g <- rbind(g,tt)
         rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-        g %>% arrange(desc(Score)) -> g
+        g %>% arrange(desc(as.numeric(Score))) -> g
         d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Ça Brûle !"," ■■■■■■■■■■■■■■■■■■  "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
         rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
         colnames(d) <- c(" ","  ","   ","    ")
@@ -104,7 +104,7 @@ Play <- function(x){
           tt <- c(x, final[final==x,3], "C'est très chaud !"," ■■■■■■■■■■■■■■■■■■  ")
           g <- rbind(g,tt)
           rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-          g %>% arrange(desc(Score)) -> g
+          g %>% arrange(desc(as.numeric(Score))) -> g
           d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "C'est très chaud !"," ■■■■■■■■■■■■■■■■■■  "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
           rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
           colnames(d) <- c(" ","  ","   ","    ")
@@ -126,7 +126,7 @@ Play <- function(x){
               tt <- c(x, final[final==x,3], "C'est Chaud !"," ■■■■■■■■■■■■■■■■    ")
               g <- rbind(g,tt)
               rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-              g %>% arrange(desc(Score)) -> g
+              g %>% arrange(desc(as.numeric(Score))) -> g
               d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "C'est Chaud !"," ■■■■■■■■■■■■■■■■    "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
               rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
               colnames(d) <- c(" ","  ","   ","    ")
@@ -139,7 +139,7 @@ Play <- function(x){
                 tt <- c(x, final[final==x,3], "Tiède !"," ■■■■■■■■■■■■■■      ")
                 g <- rbind(g,tt)
                 rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                g %>% arrange(desc(Score)) -> g
+                g %>% arrange(desc(as.numeric(Score))) -> g
                 d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Tiède !"," ■■■■■■■■■■■■■■      "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                 rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                 colnames(d) <- c(" ","  ","   ","    ")
@@ -152,7 +152,7 @@ Play <- function(x){
                   tt <- c(x, final[final==x,3], "Tiède !"," ■■■■■■■■■■■■        ")
                   g <- rbind(g,tt)
                   rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                  g %>% arrange(desc(Score)) -> g
+                  g %>% arrange(desc(as.numeric(Score))) -> g
                   d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Tiède !"," ■■■■■■■■■■■■        "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                   rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                   colnames(d) <- c(" ","  ","   ","    ")
@@ -165,7 +165,7 @@ Play <- function(x){
                     tt <- c(x, final[final==x,3], "Tiède !"," ■■■■■■■■■■          ")
                     g <- rbind(g,tt)
                     rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                    g %>% arrange(desc(Score)) -> g
+                    g %>% arrange(desc(as.numeric(Score))) -> g
                     d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Tiède !"," ■■■■■■■■■■          "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                     rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                     colnames(d) <- c(" ","  ","   ","    ")
@@ -178,7 +178,7 @@ Play <- function(x){
                       tt <- c(x, final[final==x,3], "Tiède !"," ■■■■■■■■            ")
                       g <- rbind(g,tt)
                       rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                      g %>% arrange(desc(Score)) -> g
+                      g %>% arrange(desc(as.numeric(Score))) -> g
                       d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Tiède !"," ■■■■■■■■            "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                       rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                       colnames(d) <- c(" ","  ","   ","    ")
@@ -191,7 +191,7 @@ Play <- function(x){
                         tt <- c(x, final[final==x,3], "Tiède !"," ■■■■■■              ")
                         g <- rbind(g,tt)
                         rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                        g %>% arrange(desc(Score)) -> g
+                        g %>% arrange(desc(as.numeric(Score))) -> g
                         d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Tiède !"," ■■■■■■              "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                         rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                         colnames(d) <- c(" ","  ","   ","    ")
@@ -204,7 +204,7 @@ Play <- function(x){
                           tt <- c(x, final[final==x,3], "Tiède !"," ■■■■                ")
                           g <- rbind(g,tt)
                           rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                          g %>% arrange(desc(Score)) -> g
+                          g %>% arrange(desc(as.numeric(Score))) -> g
                           d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Tiède !"," ■■■■                "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                           rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                           colnames(d) <- c(" ","  ","   ","    ")
@@ -217,7 +217,7 @@ Play <- function(x){
                             tt <- c(x, final[final==x,3], "Tiède !"," ■■                  ")
                             g <- rbind(g,tt)
                             rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                            g %>% arrange(desc(Score)) -> g
+                            g %>% arrange(desc(as.numeric(Score))) -> g
                             d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Tiède !"," ■■                  "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                             rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                             colnames(d) <- c(" ","  ","   ","    ")
@@ -229,7 +229,7 @@ Play <- function(x){
                             tt <- c(x, final[final==x,3], "Tiède !"," ")
                             g <- rbind(g,tt)
                             rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                            g %>% arrange(desc(Score)) -> g
+                            g %>% arrange(desc(as.numeric(Score))) -> g
                             d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Tiède !"," "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                             rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                             colnames(d) <- c(" ","  ","   ","    ")
@@ -257,7 +257,7 @@ Play <- function(x){
               tt <- c(x, final[final==x,3], "Froid !"," ")
               g <- rbind(g,tt)
               rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-              g %>% arrange(desc(Score)) -> g
+              g %>% arrange(desc(as.numeric(Score))) -> g
               d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, final[final==x,3], "Froid !"," "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
               rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
               colnames(d) <- c(" ","  ","   ","    ")
@@ -282,7 +282,7 @@ Play <- function(x){
                   tt <- c(x, 0, "Glacé !"," ")
                   g <- rbind(g,tt)
                   rownames(g)[nrow(g)] <- as.numeric(rownames(g)[nrow(g)])-1
-                  g %>% arrange(desc(Score)) -> g
+                  g %>% arrange(desc(as.numeric(Score))) -> g
                   d <- rbind(c(" "," "," "," "),c("Mot","Score","Commentaire","Progression"),c(" "," "," "," "),c(x, 0, "Glacé !"," "),c("———————————————","——————————————","——————————————————","—————————————————————"),g[1:nrow(g),])
                   rownames(d) <- c("          ","        ","       ",paste0("n°",rownames(g)[g[,1]==x]),"   ",rownames(g[1:nrow(g),]))
                   colnames(d) <- c(" ","  ","   ","    ")
@@ -368,7 +368,7 @@ Indice <- function(){
 
 
 
-ui <- navbarPage("Motamo",theme = shinytheme("flatly"), ## flatly, paper
+ui <- navbarPage("Motamo",theme = shinytheme("flatly"), # flatly, ##paper
                  tabPanel("Jouer",
                           headerPanel(""),
                           sidebarPanel(
