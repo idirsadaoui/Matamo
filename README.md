@@ -2,7 +2,7 @@
 Devinez le mot secret en jouant à Motamo
 
 Ce jeu à été implémenté sur Rstudio dans le cadre d'un projet de master d'analyse de données textuelles.
-Le données utilisées proviennent du site de Jean-Philippe Fauconnier et son présentent à l'adresse suivante : https://fauconnier.github.io
+Le données utilisées proviennent du site de Jean-Philippe Fauconnier et sont présentent à l'adresse suivante : https://fauconnier.github.io
 
 
 Le jeu de données sélectionné est frWac_non_lem_no_postag_no_phrase_200_cbow_cut100.bin \
