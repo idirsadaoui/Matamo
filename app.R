@@ -34,8 +34,8 @@ library(shinythemes)
 #write.fst(mots,"mots.fst")
 options(max.print = 10000)
 options(width = 500)
-mota <- read_fst("mots.fst")
-rownames(mota) <- colnames(mota)
+mots <- read_fst("mots.fst")
+rownames(mots) <- colnames(mots)
 
 
 `%notin%` <- Negate(`%in%`)
