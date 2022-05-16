@@ -5,18 +5,18 @@ library(lsa)
 library(fst)
 library(shinythemes)
 
-# mota <- read.table('mota.txt')
-# rownames(mota) <- mota[,1]
-# mota <- mota[,-1]
-# dim(mota)
+# mots <- read.table('mots.txt')
+# rownames(mots) <- mots[,1]
+# mots <- mots[,-1]
+# dim(mots)
 
 ## Pour le bon fonctionnement de la fonction, les données des dimensions de chaque mots doivent être en ligne.
-## On utilise donc la transporsée de mota.
-# mota <- t(mota)
+## On utilise donc la transporsée.
+# mots <- t(mots)
 
 ## on applique la fonction cosine pour calculer la "distance" entre les mots.
-# mota <- cosine(mota[,1:dim(mota)[2]])
-# mota <- as.data.frame(mota)
+# mots <- cosine(mots[,1:dim(mots)[2]])
+# mots <- as.data.frame(mots)
 
 ## On peut aussi implémenter nous même la fonction cosine, il suffit de recopier la formule mathématique issu de Wikipédia:
 
@@ -29,21 +29,21 @@ library(shinythemes)
 
 ## On récupère la matrice cosine (implémentation longue) et on la transforme en format .fst pour charger beaucoup
 ## plus rapidement les données dans le cadre de l'application Shiny.
-#write.fst(mota,"mota.fst")
+#write.fst(mots,"mots.fst")
 options(max.print = 10000)
 options(width = 500)
-mota <- read_fst("mota.fst")
-rownames(mota) <- colnames(mota)
+mots <- read_fst("mots.fst")
+rownames(mots) <- colnames(mots)
 
 
 `%notin%` <- Negate(`%in%`)
-y <- as.vector(colnames(mota))
+y <- as.vector(colnames(mots))
 
 # tirage au sort du mot
-tirage <- y[sample(1:dim(mota)[2],size=1)]
+tirage <- y[sample(1:dim(mots)[2],size=1)]
 
 
-res <- mota[which(colnames(mota)==tirage)]
+res <- mots[which(colnames(mots)==tirage)]
 res %>% arrange(desc(res[,1])) -> res
 
 # tableau final
@@ -320,9 +320,9 @@ NouvellePartie <- function(){
   k <<- 96
   i <<- 1
   b <<- 1
-  tirage <- y[sample(1:dim(mota)[2],size=1)]
+  tirage <- y[sample(1:dim(mots)[2],size=1)]
   tirage <<- tirage
-  res <- mota[which(colnames(mota)==tirage)]
+  res <- mots[which(colnames(mots)==tirage)]
   res %>% arrange(desc(res[,1])) -> res
   final <- data.frame("Mot" = rownames(res)[1:1000],
                       "Distance" = res[1:1000,],
@@ -366,7 +366,7 @@ Indice <- function(){
 
 
 
-ui <- navbarPage("Motamo",theme = shinytheme("flatly"), # flatly, ##paper
+ui <- navbarPage("Motamo",theme = shinytheme("flatly"), ## flatly, paper
                  tabPanel("Jouer",
                           headerPanel(""),
                           sidebarPanel(
