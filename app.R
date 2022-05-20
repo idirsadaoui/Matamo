@@ -362,9 +362,10 @@ Indice <- function(){
 }
 
 
-
-
-
+jscode <- '$(document).keyup(function(e) {
+    if (e.key == "Enter") {
+    $("#submit").click();
+}});'
 
 
 
@@ -415,10 +416,14 @@ ui <- navbarPage("Motamo",theme = shinytheme("flatly"), # flatly, ##paper
                           , width = 3),
                           
                           mainPanel(
+                            tags$head(tags$script(HTML(jscode))),
+                            tagList(
+                              tagAppendAttributes(textInput("user_text", label = " ", placeholder = "Entrer un mot :"),`data-proxy-click` = "submit"
+                              ),
+                              tags$head(tags$style(HTML("#submit{ background-color: rgb(44,62,80); color: white}"))),
+                              actionButton("submit", label = "Envoyer"),
+                            ),
                             
-                            textInput("user_text", label = " ", placeholder = "Entrer un mot :"),
-                            tags$head(tags$style(HTML("#submit{ background-color: rgb(44,62,80); color: white}"))),
-                            actionButton("submit", label = "Envoyer"),
                             tags$head(tags$style(HTML("#text{ color: rgb(38,65,71)}"))),
                             verbatimTextOutput("text")
                           , width = 7)
