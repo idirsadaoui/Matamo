@@ -658,11 +658,11 @@ server <- function(input, output, session) {
   })
   
   output$info <- renderPrint({
-    cat("\n","Ce jeu à été implémenté par Idir SADAOUI et Hamady CISSÉ dans le cadre d'un projet de master encadré","\n",
+    cat("\n","Ce jeu à été implémenté par Idir SADAOUI dans le cadre d'un projet de master encadré","\n",
         "par Antoine CHAMBAZ à l'Université de Paris Cité.","\n",
-        "Les données ont été extraites du site de Jean-Philippe FAUCONNIER, nous les avons nettoyé et avons utilisé","\n",
-        "la distance cosine pour calculer la 'distance' entre les mots.","\n",
-        "Notre jeu de données contient 10.000 mots.",
+        "Les données ont été extraites et nettoyées du site de Jean-Philippe FAUCONNIER, et la dissimilarité","\n",
+        "cosine a été utilisé pour calculer la 'distance' entre les mots.","\n",
+        "Le jeu de données contient 10.000 mots.",
         "\n",
         "\n",
         "\n",
@@ -672,7 +672,7 @@ server <- function(input, output, session) {
         "Site de Jean-Philippe FAUCONNIER : https://fauconnier.github.io/#data","\n",
         "Données utilisées : frWac_non_lem_no_postag_no_phrase_200_cbow_cut100.bin","\n",
         "Github Idir SADAOUI : https://github.com/idirsadaoui","\n",
-        "Distance Cosine : https://en.wikipedia.org/wiki/Cosine_similarity","\n",
+        "Cosine Similarity : https://en.wikipedia.org/wiki/Cosine_similarity","\n",
         "Fonction Cosine utilisé sur R : cosine() du package lsa",
         "\n",
         "\n",
