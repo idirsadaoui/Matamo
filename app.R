@@ -651,7 +651,7 @@ server <- function(input, output, session) {
         "\n",
         "Vous avez la possibilité d'abandonner, dans ce cas le tableau final contenant le mot secret ainsi que les 999","\n",
         "mots les plus proches apparaîtra.","\n",
-        "Vous avez aussi la possibilité de lancer une nouvelle partie, un nouveau tirage sera alors effectuer et vous","\n",
+        "Vous avez aussi la possibilité de lancer une nouvelle partie, un nouveau tirage sera alors effectué et vous","\n",
         "pourrez rejouer et deviner un nouveau mot secret.","\n"
     )
     
@@ -671,7 +671,7 @@ server <- function(input, output, session) {
         "\n",
         "Site de Jean-Philippe FAUCONNIER : https://fauconnier.github.io/#data","\n",
         "Données utilisées : frWac_non_lem_no_postag_no_phrase_200_cbow_cut100.bin","\n",
-        "Github Idir SADAOUI : https://github.com/idirsadaoui","\n",
+        "Mon Github : https://github.com/idirsadaoui","\n",
         "Cosine Similarity : https://en.wikipedia.org/wiki/Cosine_similarity","\n",
         "Fonction Cosine utilisé sur R : cosine() du package lsa",
         "\n",
